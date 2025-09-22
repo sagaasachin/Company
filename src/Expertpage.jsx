@@ -63,34 +63,41 @@ const ExpertPage = () => {
         </Typography>
         <Grid container spacing={4} justifyContent="center">
           {experts.map((expert, index) => (
-            <Grid item key={index}
+            <Grid
+              item
+              key={index}
+              xs={12}      // full width on mobile
+              sm={6}       // two per row on small screens
+              md={4}       // three per row on medium screens
+              lg={3}       // four per row on large screens
               data-aos="fade-up"
               data-aos-delay={index * 100}
               data-aos-duration="800"
+              sx={{ display: 'flex', justifyContent: 'center' }}
             >
               <Card
                 sx={{
-                  height: 400,
-                  width: 400,
+                  height: { xs: 350, sm: 380, md: 400 },
+                  width: { xs: '100%', sm: 350, md: 400 },
                   transition: 'transform 0.3s, box-shadow 0.3s',
                   '&:hover': {
                     transform: 'translateY(-8px)',
                     boxShadow: '0 8px 24px rgba(3, 3, 3, 0.8)',
-                    overflow: 'hidden'
                   },
                   borderRadius: 3,
                   backgroundColor: '#ffffff',
                   overflow: 'hidden',
-                  position: 'relative'
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column'
                 }}
               >
-                <Box sx={{ position: 'relative', height: 400 }}>
+                <Box sx={{ position: 'relative', flex: 1 }}>
                   <CardMedia
                     component="img"
-                    height="300"
                     image={expert.image}
                     alt={expert.heading}
-                    sx={{ objectFit: 'cover', height: '100%' }}
+                    sx={{ objectFit: 'cover', height: '100%', width: '100%' }}
                   />
                   <Box
                     sx={{
@@ -100,7 +107,7 @@ const ExpertPage = () => {
                       backgroundColor: 'rgba(0, 0, 0, 0.6)',
                       color: 'white',
                       px: 2,
-                      py: 3
+                      py: 2,
                     }}
                   >
                     <Typography variant="h6" fontWeight="bold">

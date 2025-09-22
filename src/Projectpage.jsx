@@ -51,25 +51,28 @@ const ProjectPage = () => {
   }, []);
 
   return (
-    <Box sx={{ pt: 10, pb: 5, backgroundColor: '#f9f9f9', minHeight: '100vh', }}>
+    <Box sx={{ pt: 10, pb: 5, backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
       <Container maxWidth="xl">
         <Typography variant="h4" align="center" gutterBottom color="green">
           Our Projects
         </Typography>
-        <Grid container spacing={2} justifyContent="center">
+        <Grid container spacing={4} justifyContent="center">
           {projects.map((project, index) => (
             <Grid
               item
               key={index}
+              xs={12}       // Full width on mobile
+              sm={6}        // Two per row on small screens
+              md={4}        // Three per row on medium screens
+              lg={3}        // Four per row on large screens
               data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
               data-aos-duration="900"
-              data-aos-once="false"
-              
+              sx={{ display: 'flex', justifyContent: 'center' }}
             >
               <Card
                 sx={{
-                  width: 350,
-                  minHeight: 460,
+                  width: { xs: '100%', sm: 320, md: 350 },
+                  minHeight: { xs: 400, sm: 440, md: 460 },
                   borderRadius: '20px',
                   overflow: 'hidden',
                   display: 'flex',
@@ -90,10 +93,9 @@ const ProjectPage = () => {
               >
                 <CardMedia
                   component="img"
-                  height="300"
                   image={project.image}
                   alt={project.title}
-                  sx={{ objectFit: 'cover' }}
+                  sx={{ objectFit: 'cover', height: { xs: 200, sm: 250, md: 300 } }}
                 />
                 <CardContent
                   sx={{
